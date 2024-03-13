@@ -24,8 +24,12 @@ public class BookItem {
 public class CommentItem {
     [SwaggerSchema(ReadOnly = true)]
     public long Id { get; set; }
+
+    [JsonPropertyName("user_name")]
     public string UserName { get; set; }
     public string Body { get; set; }
+
+    [JsonPropertyName("book_id")]
     [SwaggerSchema(ReadOnly = true)]
 
     public long? BookItemId { get; set; }
