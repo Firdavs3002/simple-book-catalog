@@ -20,14 +20,14 @@ namespace server.Controllers
             _context = context;
         }
 
-        // GET: api/CommentItems
+        // GET: api/books/1/comments
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CommentItem>>> GetCommentItems(long book_id)
         {
             return await _context.CommentItems.Where(b => b.BookItemId == book_id).ToListAsync();
         }
 
-        // GET: api/CommentItems/5
+        // GET: api/books/1/comments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentItem>> GetCommentItem(long book_id, long id)
         {
@@ -41,7 +41,7 @@ namespace server.Controllers
             return commentItem;
         }
 
-        // PUT: api/CommentItems/5
+        // PUT: api/books/1/comments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCommentItem(long book_id, long id, CommentItem commentItem)
@@ -70,7 +70,7 @@ namespace server.Controllers
             return NoContent();
         }
 
-        // POST: api/CommentItems
+        // POST: api/books/1/comments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<CommentItem>> PostCommentItem(long book_id, CommentItem commentItem)
@@ -83,7 +83,7 @@ namespace server.Controllers
             return CreatedAtAction(nameof(GetCommentItem), new { id = commentItem.Id, book_id = book_id }, commentItem);
         }
 
-        // DELETE: api/CommentItems/5
+        // DELETE: api/books/1/comments/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCommentItem(long book_id, long id)
         {

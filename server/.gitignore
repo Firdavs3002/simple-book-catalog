@@ -461,6 +461,8 @@ Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
 
+dockerfile
+
 # Dump file
 *.stackdump
 
