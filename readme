@@ -1,0 +1,65 @@
+// Creating a new project
+dotnet new webapi  --use-controllers -o  server
+
+// Generate gitignore
+dotnet new gitignore
+
+// Add https certificate
+dotnet dev-certs https --trust
+
+// Tool for generating scaffold for crud
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet tool uninstall -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool update -g dotnet-aspnet-codegenerator
+
+// Generate crud from models:
+dotnet aspnet-codegenerator controller -name BookItemsController -async -api -m BookItem -dc BookContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name CommentItemsController -async -api -m CommentItem -dc BookContext -outDir Controllers
+
+// Add Sqlite3 support
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Microsoft.Data.Sqlite
+sqlite3 BookCatalog.db
+
+// in Program.cs add
+"""
+builder.Services.AddDbContext<BookContext>(opt =>
+    opt.UseSqlite(builder.Configuration.GetConnectionString("BookCatalog")));
+"""
+
+// Swagger annotations:
+dotnet add package Swashbuckle.AspNetCore.Annotations
+
+// Models/Book.cs models for db
+
+// Add for readonly id in swagger
+"""
+using Swashbuckle.AspNetCore.Annotations;
+
+...
+
+    [SwaggerSchema(ReadOnly = true)]
+    public long Id { get; set; }
+"""
+
+// Models/BookContext.cs context class
+
+// Database Migration:
+dotnet tool install --global dotnet-ef
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+// Change return for Post in Controller:
+"""
+// return CreatedAtAction("GetBookItem", new { id = bookItem.Id }, bookItem);
+return CreatedAtAction(nameof(GetBookItem), new { id = bookItem.Id }, bookItem);
+"""
+
+dotnet run
+
+// Run with https:
+dotnet run --launch-profile https
