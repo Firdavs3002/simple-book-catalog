@@ -1,3 +1,6 @@
+This application was developed for Web
+Application module, as coursework portfolio project @ WIUT by student ID: 00013404"
+
 // Creating a new project
 dotnet new webapi  --use-controllers -o  server
 
