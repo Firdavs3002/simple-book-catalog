@@ -1,0 +1,51 @@
+.content {
+    padding-top: 10px;
+  }
+.row {
+    display: flex;
+    gap: 30px;
+  
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+
+.action {
+    padding: 0px 25px 20px;
+    button {
+      flex: 1;
+    }
+  }
+
+
+   .feedback-section {
+    margin-top: 50px;
+  }
+
+  .feedback-section {
+  margin-top: 20px;
+}
+
+.feedback-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.feedback-item {
+  border: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedback-content {
+  font-size: 16px;
+}
+
+.feedback-date {
+  font-size: 14px;
+  color: #888;
+}
+  
