@@ -1,0 +1,42 @@
+<div mat-dialog-title>
+    <h1>Product Form</h1>
+</div>
+<form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" >
+                <mat-label>author</mat-label>
+                <input matInput type="text" formControlName="author">
+            </mat-form-field>
+            <mat-form-field appearance="outline" >
+                <mat-label >Name</mat-label>
+                <input matInput type="text" formControlName="name">
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline" >
+                <mat-label >price</mat-label>
+                <input matInput type="number" formControlName="price">
+            </mat-form-field>
+            <mat-form-field appearance="outline" >
+                <mat-label >year</mat-label>
+                <input matInput type="number" formControlName="year">
+            </mat-form-field>
+            <mat-form-field appearance="outline" >
+                <mat-label>language</mat-label>
+                <input matInput type="text" formControlName="language">
+            </mat-form-field>
+        </div>
+        <!-- <div class="row">
+            <mat-radio-group aria-label="Select an option" formControlName="is_in_stock">
+                <mat-label><b>Is in stock</b></mat-label>
+                <mat-radio-button value="Yes">Yes</mat-radio-button>
+                <mat-radio-button value="No">No</mat-radio-button>
+            </mat-radio-group>
+        </div> -->
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+    </div>  
+</form>
